@@ -1,0 +1,12 @@
+.sidenav-menu md-toolbar {
+  padding: 0;
+}
+
+.sidenav-menu md-nav-list {
+  padding: 0;
+  width: 100%;
+}
+
+.sidenav-menu .mat-list-item.active {
+  background-color: rgba(0,0,0,0.04);
+}

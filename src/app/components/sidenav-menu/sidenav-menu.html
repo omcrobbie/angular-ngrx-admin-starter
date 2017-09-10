@@ -1,0 +1,22 @@
+<div class="sidenav-menu">
+  <md-toolbar color="accent">
+    <md-nav-list>
+      <a md-list-item *ngIf="(currentUser$ | async)">
+        <md-icon md-list-icon>person</md-icon>
+        <h3 md-line>Hello, {{ (currentUser$ | async)?.userName }}</h3>
+      </a>
+      <a md-list-item *ngIf="!(currentUser$ | async)">
+        <h3 md-line>Please login</h3>
+      </a>
+    </md-nav-list>
+  </md-toolbar>
+
+  <md-nav-list>
+
+    <md-divider></md-divider>
+    <a md-list-item (click)="logout()">
+      <md-icon md-list-icon>exit_to_app</md-icon>
+      <h3 md-line>Logout</h3>
+    </a>
+  </md-nav-list>
+</div>

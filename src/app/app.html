@@ -1,0 +1,13 @@
+<md-sidenav-container>
+  <md-sidenav mode="side" opened="true" align="end" #sidenav>
+    <sidenav-menu></sidenav-menu>
+  </md-sidenav>
+
+  <div class="content-container">
+    <navbar [menu]="sidenav"></navbar>
+
+    <div class="page-container p3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</md-sidenav-container>

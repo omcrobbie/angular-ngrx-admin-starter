@@ -1,0 +1,14 @@
+<md-card class="action-card mb3" (click)="navigateTo(path)">
+  <div class="flex flex-auto">
+    <div class="action-card--info">
+      <md-card-title>{{ content.title }}</md-card-title>
+      <md-card-content>
+        {{ content.text }}
+      </md-card-content>
+    </div>
+
+    <div class="action-card--icon" *ngIf="content.icon">
+      <md-icon color="primary">{{ content.icon }}</md-icon>
+    </div>
+  </div>
+</md-card>

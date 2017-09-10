@@ -1,0 +1,33 @@
+md-card.action-card {
+  width: 100%;
+  height: 130px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+md-card.action-card .action-card--info {
+  flex: 1;
+  overflow: hidden;
+}
+
+md-card.action-card .action-card--icon {
+  width: 80px;
+  margin-left: 20px;
+  background-color: #F9F9F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+md-card.action-card .action-card--icon md-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+md-card.action-card md-card-content {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

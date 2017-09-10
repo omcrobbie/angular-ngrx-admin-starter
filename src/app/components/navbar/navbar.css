@@ -1,0 +1,22 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+header a.title {
+  color: #FFFFFF;
+}
+
+.mat-toolbar {
+  padding: 0 1.2rem;
+}
+
+.mat-menu-item .mat-icon {
+  margin-right: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
