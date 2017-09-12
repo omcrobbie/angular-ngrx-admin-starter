@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdSidenav } from '@angular/material';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'navbar',
@@ -9,6 +10,7 @@ import { MdSidenav } from '@angular/material';
 
 export class NavbarComponent implements OnInit {
   @Input() menu: MdSidenav;
+  appName = environment.appName;
 
   constructor() {}
 
