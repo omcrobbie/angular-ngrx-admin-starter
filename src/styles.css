@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~basscss/css/basscss.min.css";
+@import '~basscss-type-scale/css/type-scale.css';
+@import '~basscss-typography/css/typography.css';
+@import '~basscss-layout/css/layout.css';
+@import '~basscss-align/css/align.css';
+@import '~basscss-margin/css/margin.css';
+@import '~basscss-padding/css/padding.css';
+@import '~basscss-grid/css/grid.css';
+@import '~basscss-flexbox/css/flexbox.css';
+@import '~basscss-position/css/position.css';
+@import '~basscss-border/css/border.css';
+@import '~basscss-hide/css/hide.css';
 
 * {
   box-sizing: border-box;
