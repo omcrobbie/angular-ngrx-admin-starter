@@ -12,5 +12,5 @@ declare var process: {
 export const environment = {
   apiUrl: process.env.BACKEND_API,
   production: false,
-  userTokenKey: "mdh-user-token"
+  userTokenKey: 'ngApp.token'
 };

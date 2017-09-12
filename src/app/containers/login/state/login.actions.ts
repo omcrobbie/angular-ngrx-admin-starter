@@ -1,47 +1,57 @@
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
+export interface LoginPayload {
+  userName: string;
+  password: string;
+}
 export const LOGIN = 'LOGIN';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
-export const HTTP_FAILED = 'HTTP_FAILED';
-export const RESET_LOGIN_STATE = 'RESET_LOGIN_STATE';
-export const SET_LOGGED_IN = 'SET_LOGGED_IN';
-
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const AUTH = 'AUTH';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 export class Login implements Action {
   readonly type = LOGIN;
-  constructor(public payload: any) {}
+  constructor(public loginPayload: LoginPayload) {}
 }
 
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
-  constructor(public payload: any) {}
+  constructor(public currentUser: any) {}
 }
 
 export class Logout implements Action {
   readonly type = LOGOUT;
-  constructor(public payload: any) {}
+  constructor() {}
+}
+export class LogoutSuccess implements Action {
+  readonly type = LOGOUT_SUCCESS;
+  constructor() {}
 }
 
-export class HttpFailedAction implements Action {
-  readonly type = HTTP_FAILED;
-  constructor(public payload: any) {}
+export class LoginFailed implements Action {
+  readonly type = LOGIN_FAILED;
+  constructor(public error: any) {}
+}
+export class Auth implements Action {
+  readonly type = AUTH;
+  constructor() {}
+}
+export class AuthSuccess implements Action {
+  readonly type = AUTH_SUCCESS;
+  constructor(public currentUser: any) {}
 }
 
-export class ResetLoginState implements Action {
-  readonly type = RESET_LOGIN_STATE;
-  constructor(public payload: any) {}
-}
 
-export class SetLoggedIn implements Action {
-  readonly type = SET_LOGGED_IN;
-  constructor(public payload: any) {}
-}
 
 export type Actions
     = Login
     | LoginSuccess
     | Logout
-    | HttpFailedAction
-    | ResetLoginState
-    | SetLoggedIn;
+    | LogoutSuccess
+    | Auth
+    | AuthSuccess
+    | LoginFailed;
+

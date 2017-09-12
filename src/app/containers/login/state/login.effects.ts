@@ -1,3 +1,4 @@
+import { StorageService } from './../../../services/storage.service';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -14,30 +15,38 @@ export class LoginEffects {
   @Effect()
   login$: Observable<Action> = this.action$
     .ofType(login.LOGIN)
-    .switchMap(action => {
-      return this.loginService.login(action.payload)
-        .map(data => new login.LoginSuccess(data))
-        .catch(err => of(new login.HttpFailedAction(err)));
+    .switchMap((action: login.Login) => {
+      return this.loginService.login(action.loginPayload)
+        .map(data => {
+          this.storageService.setTokenSync(data.token);
+          return new login.LoginSuccess(data.user);
+        })
+        .catch(err => of(new login.LoginFailed(err)));
     });
-
-  @Effect({dispatch: false})
-  loginSuccess$: Observable<Action> = this.action$
-    .ofType(login.LOGIN_SUCCESS)
-    .switchMap(action => {
-      window.localStorage.setItem(env.userTokenKey, action.payload.token);
-      return of();
-    });
-
-  @Effect({ dispatch: false })
+  @Effect()
   logout$: Observable<Action> = this.action$
     .ofType(login.LOGOUT)
     .switchMap(() => {
-      window.localStorage.removeItem(env.userTokenKey);
-      return of();
+      return this.storageService.clearToken()
+        .map(() => {
+          return new login.LogoutSuccess();
+        })
+        .catch(err => of(new login.LoginFailed(err)));
+    });
+  @Effect()
+  auth$: Observable<Action> = this.action$
+    .ofType(login.AUTH)
+    .switchMap((action) => {
+      return this.loginService.auth()
+        .map((userData) => {
+          return new login.AuthSuccess(userData);
+        })
+        .catch(err => of(new login.LoginFailed(err)));
     });
 
   constructor(
     private action$: Actions,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private storageService: StorageService
   ) { }
 }

@@ -1,3 +1,5 @@
+import { StorageService } from './services/storage.service';
+import { LoginService } from './containers/login/login.service';
 import { SocketService } from './services/socket.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar';
 import { ContainersModule } from './containers/containers.module';
 import { LoginEffects } from './containers/login/state/login.effects';
 import { AppMaterialModule } from './../utils/material.module';
+import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
 
 import { httpFactory } from './services/http.factory';
 import { AuthorizedGuard } from './guards/auth.guard';
@@ -34,7 +37,11 @@ import { reducer } from './store';
     FormsModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    RouterStoreModule.connectRouter()
+    RouterStoreModule.connectRouter(),
+    LocalStorageModule.withConfig({
+      prefix: 'ngApp', // change this as needed
+      storageType: 'localStorage'
+    })
   ],
   declarations: [
     AppComponent
@@ -42,12 +49,14 @@ import { reducer } from './store';
   bootstrap: [AppComponent],
   providers: [
     AuthorizedGuard,
+    StorageService,
     SocketService,
+    LoginService,
     {
       provide: Http,
       useFactory: httpFactory,
       deps: [ XHRBackend, RequestOptions ]
-    }
+    },
   ]
 })
 

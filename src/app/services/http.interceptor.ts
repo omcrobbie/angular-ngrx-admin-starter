@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
-import { Observable} from "rxjs/Rx";
-import { environment as env } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from '@angular/http';
+import { Observable} from 'rxjs/Rx';
+import { environment as env } from '../../environments/environment';
 
 @Injectable()
 export class InterceptedHttp extends Http {
@@ -37,7 +37,7 @@ export class InterceptedHttp extends Http {
     return  env.apiUrl + req;
   }
 
-  private getRequestOptionArgs(options?: RequestOptionsArgs) : RequestOptionsArgs {
+  private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
     if (options == null) {
       options = new RequestOptions();
     }
@@ -51,7 +51,7 @@ export class InterceptedHttp extends Http {
     const token = this.getUserTokenFromStorage();
 
     if (token) {
-      options.headers.append('Authorization', `Bearer ${token}`);
+      options.headers.append('Authorization', `Bearer ${token.replace(/["]+/g, '')}`);
     }
 
     return options;

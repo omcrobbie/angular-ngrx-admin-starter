@@ -9,7 +9,7 @@ import { AuthorizedGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: DashboardComponent,
     canActivate: [AuthorizedGuard]
   },

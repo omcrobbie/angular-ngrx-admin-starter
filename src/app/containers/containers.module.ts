@@ -25,8 +25,7 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
   ],
   providers: [
-    AppMaterialModule,
-    LoginService
+    AppMaterialModule
   ]
 })
 

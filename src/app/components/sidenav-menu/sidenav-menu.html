@@ -14,7 +14,7 @@
   <md-nav-list>
 
     <md-divider></md-divider>
-    <a md-list-item (click)="logout()">
+    <a md-list-item *ngIf="loggedIn$ | async" (click)="logout()">
       <md-icon md-list-icon>exit_to_app</md-icon>
       <h3 md-line>Logout</h3>
     </a>

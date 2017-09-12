@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import * as fromRoot from '../../store';
-import * as actions from "./state/login.actions";
+import * as actions from './state/login.actions';
+import { go } from '@ngrx/router-store';
 
 @Component({
   selector: 'login',
@@ -13,34 +14,34 @@ import * as actions from "./state/login.actions";
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  login$: Observable<any>;
-  loaded$:  Observable<any>;
-  loading$:  Observable<any>;
   loggedIn$: Observable<any>;
   password: string;
   userName: string;
   sub: Subscription;
 
   constructor(
-    private router: Router,
     private store: Store<fromRoot.State>
   ) {
-    this.loading$ = this.store.select(fromRoot.getLoginLoading);
     this.loggedIn$ = this.store.select(fromRoot.getLoginLoggedIn);
   }
 
   login(): void {
-    this.store.dispatch(new actions.Login({
+    const payload: actions.LoginPayload = {
       userName: this.userName,
       password: this.password
-    }));
+    };
+    this.store.dispatch(new actions.Login(payload));
   }
 
   ngOnInit(): void {
-
+    this.sub = this.loggedIn$.subscribe(loggedIn => {
+      if (loggedIn) {
+        this.store.dispatch(go(['/']));
+      }
+    });
   }
 
   ngOnDestroy(): void {
-
+    this.sub.unsubscribe();
   }
 }
