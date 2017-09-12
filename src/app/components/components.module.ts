@@ -12,7 +12,7 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu';
 const components = [
   ActionCardComponent,
   NavbarComponent,
-  SidenavMenuComponent,
+  SidenavMenuComponent
 ];
 
 @NgModule({

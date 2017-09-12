@@ -11,6 +11,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const AUTH = 'AUTH';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export class Login implements Action {
   readonly type = LOGIN;
@@ -43,7 +44,10 @@ export class AuthSuccess implements Action {
   readonly type = AUTH_SUCCESS;
   constructor(public currentUser: any) {}
 }
-
+export class AuthFailed implements Action {
+  readonly type = AUTH_FAILED;
+  constructor(public error: any) {}
+}
 
 
 export type Actions
@@ -53,5 +57,6 @@ export type Actions
     | LogoutSuccess
     | Auth
     | AuthSuccess
+    | AuthFailed
     | LoginFailed;
 

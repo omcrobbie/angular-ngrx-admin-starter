@@ -19,7 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar';
 import { ContainersModule } from './containers/containers.module';
 import { LoginEffects } from './containers/login/state/login.effects';
 import { AppMaterialModule } from './../utils/material.module';
-import { LocalStorageModule, LocalStorageService } from 'angular-2-local-storage';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { httpFactory } from './services/http.factory';
 import { AuthorizedGuard } from './guards/auth.guard';
@@ -35,6 +36,7 @@ import { reducer } from './store';
     ComponentsModule,
     EffectsModule.run(LoginEffects),
     FormsModule,
+    FlashMessagesModule,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     RouterStoreModule.connectRouter(),

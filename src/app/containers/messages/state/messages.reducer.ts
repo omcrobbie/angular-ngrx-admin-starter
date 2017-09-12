@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
-import { SET_MESSAGE } from './messages.actions';
+import * as messages from './messages.actions';
+import * as login from '../../login/state/login.actions';
 
 
 export interface State {
@@ -15,11 +16,31 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
-    // case DELETE_TEMPLATE_SUCCESS:
-    //   return Object.assign({}, state, {
-    //     snackBar: "Template removed."
-    //   });
-
+    case messages.SET_BAR_MESSAGE:
+      return Object.assign({}, state, {
+        snackBar: action.payload
+      });
+    case messages.SET_FLASH_MESSAGE:
+      return Object.assign({}, state, {
+        flash: action.payload
+      });
+    case messages.CLEAR_MESSAGES:
+      return Object.assign({}, state, {
+        snackBar: undefined,
+        flash: undefined
+      });
+    case login.LOGIN_SUCCESS:
+      return Object.assign({}, state, {
+        snackBar: 'Login successful'
+      });
+      case login.LOGOUT_SUCCESS:
+      return Object.assign({}, state, {
+        snackBar: 'Logout successful'
+      });
+    case login.LOGIN_FAILED:
+      return Object.assign({}, state, {
+        snackBar: 'Login was unsuccessful'
+      });
     // case DELETE_DOCUMENT_SUCCESS:
     //   return Object.assign({}, state, {
     //     snackBar: "Document removed."
@@ -54,3 +75,4 @@ export function reducer(state = initialState, action: Action): State {
 }
 
 export const getFlashMessage = (state: State) => state.flash;
+export const getBarMessage = (state: State) => state.snackBar;

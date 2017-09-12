@@ -41,7 +41,7 @@ export class LoginEffects {
         .map((userData) => {
           return new login.AuthSuccess(userData);
         })
-        .catch(err => of(new login.LoginFailed(err)));
+        .catch(err => of(new login.AuthFailed(err)));
     });
 
   constructor(

@@ -5,13 +5,15 @@ import { logStore } from '../../../../utils/helpers';
 import * as actions from './login.actions';
 
 export interface State {
-  error: any;
+  loginError: any;
+  authError: any;
   loggedIn: Boolean;
   currentUser: any;
 }
 
 export const initialState: State = {
-  error: undefined,
+  loginError: undefined,
+  authError: undefined,
   loggedIn: false,
   currentUser: undefined
 };
@@ -31,7 +33,11 @@ export function reducer(state = initialState, action: actions.Actions): State {
       });
     case actions.LOGIN_FAILED:
       return Object.assign({}, state, {
-        error: action.error
+        loginError: action.error
+      });
+    case actions.AUTH_FAILED:
+      return Object.assign({}, state, {
+        authError: action.error
       });
 
     default:
@@ -40,5 +46,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
 }
 
 export const loginLoggedIn = (state: State) => state.loggedIn;
-export const loginError = (state: State) => state.error;
+export const loginError = (state: State) => state.loginError;
+export const authError = (state: State) => state.authError;
 export const loginCurrentUser = (state: State) => state.currentUser;

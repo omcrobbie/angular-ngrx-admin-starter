@@ -3,8 +3,6 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../../store';
-
-import { SetMessage } from '../messages/state/messages.actions';
 // import { IFlashMessage } from '../../models/flash-message';
 
 @Component({

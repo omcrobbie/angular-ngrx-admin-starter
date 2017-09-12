@@ -35,11 +35,12 @@ export const getMessagesState = (state: State) => state.messages;
  */
 export const getLoginLoggedIn = createSelector(getLoginState, fromLogin.loginLoggedIn);
 export const getLoginError = createSelector(getLoginState, fromLogin.loginError);
+export const getAuthError = createSelector(getLoginState, fromLogin.authError);
 export const getLoginUser = createSelector(getLoginState, fromLogin.loginCurrentUser);
-
 // /*
 //  * Selectors: Messages
 //  *
 //  */
 
 export const getFlashMessage = createSelector(getMessagesState, fromMessages.getFlashMessage);
+export const getMessagesBarMessages = createSelector(getMessagesState, fromMessages.getBarMessage);
