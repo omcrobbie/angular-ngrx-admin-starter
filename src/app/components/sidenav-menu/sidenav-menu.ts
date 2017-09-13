@@ -1,7 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-// import { ClearCurrentUser } from './../../containers/users/state/users.actions';
 import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';

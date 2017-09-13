@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+/* Some very helpful links: 
+    - https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
+    - https://material.io/guidelines/style/color.html#color-color-tool
+*/
+@function custom-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+    @return (
+        primary: $primary,
+        accent: $accent,
+        warn: $warn,
+        is-dark: false,
+        foreground: $mat-light-theme-foreground, 
+        background: $mat-light-theme-background, /* change to mat-dark-theme for a dark background */
+    );
+}
+
+$custom-theme-primary: mat-palette($mat-light-blue);
+$custom-theme-accent: mat-palette($mat-orange, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-red);
+$custom-theme: custom-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@include angular-material-theme($custom-theme);
