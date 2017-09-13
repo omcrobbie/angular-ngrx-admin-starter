@@ -1,24 +1,27 @@
-# Datahub - FE
-
 ## Description
-Client application provides a workspace for defining parameters and rules for tabular data parsing operations
-
-[@angular/router](https://github.com/angular/angular) to manage navigation between routes;
-[@ngrx/effects](https://github.com/ngrx/effects) to isolate side effects.
+A basic starting point for front-end web apps with most of the annoying/tedious stuff already in place
 
 Built with [@angular/cli](https://github.com/angular/angular-cli)
 Inspired by (https://github.com/ngrx/example-app.git)
 
-### Included
+### Features
+ - Login / Logout
+ - Token-based authentication and http token injection (token is injected into headers)
+ - Notifications w/ angular-material 'snackbar'
+ - Custom angular-material theming
+ - Configurable confirmation dialog
+ - Designed for use with [foundation-node-postgres](https://github.com/AD60/foundation-node-postgres)
  - [ngrx/store](https://github.com/ngrx/store) - RxJS powered state management for Angular apps, inspired by Redux
  - [ngrx/effects](https://github.com/ngrx/effects) - Side effect model for @ngrx/store
  - [angular/router](https://github.com/angular/angular) - Angular Router
- - [ngrx/db](https://github.com/ngrx/db) - RxJS powered IndexedDB for Angular apps
  - [ngrx/store-devtools](https://github.com/ngrx/store-devtools) - Instrumentation for @ngrx/store enabling time-travel debugging
+ - [ngrx/router-store](https://github.com/ngrx/router-store) - Bindings to connect Angular router to ngrx/store
  - [codewareio/ngrx-store-freeze](https://github.com/codewareio/ngrx-store-freeze) - A @ngrx/store meta reducer that prevents state from being mutated
  - [reselect](https://github.com/reactjs/reselect) - Selector library for Redux
  - [angular-material](https://github.com/angular/material2) - Modern styles for Angular 4
  - [browsersync](https://github.com/Browsersync/browser-sync) - For live reloading
+ - [ngx-auto-unsubscribe](https://github.com/NetanelBasal/ngx-auto-unsubscribe) - for cleanly handling observables
+ - [basscss](https://github.com/basscss/basscss) - low-level css toolkit
 
 ### Quick start
 
@@ -30,7 +33,7 @@ npm install
 yarn
 
 # start the server
-npm start
+npm run start:dev
 ```
 
 ### Docker
