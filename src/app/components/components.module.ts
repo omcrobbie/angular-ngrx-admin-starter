@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -12,7 +13,8 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu';
 const components = [
   ActionCardComponent,
   NavbarComponent,
-  SidenavMenuComponent
+  SidenavMenuComponent,
+  ConfirmationDialogComponent
 ];
 
 @NgModule({
@@ -26,6 +28,7 @@ const components = [
   declarations: components,
   exports: components,
   entryComponents: [
+    ConfirmationDialogComponent
   ]
 })
 

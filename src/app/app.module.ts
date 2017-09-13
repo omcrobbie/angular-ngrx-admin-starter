@@ -1,3 +1,4 @@
+import { ConfirmationService } from './services/confirmation.service';
 import { StorageService } from './services/storage.service';
 import { LoginService } from './containers/login/login.service';
 import { SocketService } from './services/socket.service';
@@ -54,6 +55,7 @@ import { reducer } from './store';
     StorageService,
     SocketService,
     LoginService,
+    ConfirmationService,
     {
       provide: Http,
       useFactory: httpFactory,

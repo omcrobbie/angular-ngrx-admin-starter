@@ -1,3 +1,4 @@
+import { ConfirmationService } from './../../services/confirmation.service';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -18,14 +19,18 @@ import * as fromRoot from '../../store';
   export class SidenavMenuComponent implements OnInit, OnDestroy {
   loggedIn$: Observable<any>;
   currentUser$: Observable<any>;
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>,
+    private confirmation: ConfirmationService
+  ) {
     this.currentUser$ = this.store.select(fromRoot.getLoginUser);
     this.loggedIn$ = this.store.select(fromRoot.getLoginLoggedIn);
   }
 
   logout() {
-    this.store.dispatch(new actions.Logout());
-    this.store.dispatch(go(['/login']));
+    this.confirmation.create(() => {
+      this.store.dispatch(new actions.Logout());
+      this.store.dispatch(go(['/login']));
+    });
   }
 
   ngOnInit() {
