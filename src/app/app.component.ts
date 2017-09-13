@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
         this.store.dispatch(new ClearMessages());
     });
     this.authSub = this.authErr$.filter( m => !!m).subscribe(err => {
-        // this.store.dispatch(new actions.Logout());
         this.store.dispatch(go(['/login']));
     });
   }

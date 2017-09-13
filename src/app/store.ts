@@ -5,17 +5,20 @@ import { ActionReducer, combineReducers } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLogin from './containers/login/state/login.reducer';
 import * as fromMessages from './containers/messages/state/messages.reducer';
+import * as fromSidebar from './components/sidenav-menu/state/sidebar.reducer';
 
 export interface State {
   login: fromLogin.State;
   router: fromRouter.RouterState;
   messages: fromMessages.State;
+  sidebar: fromSidebar.State;
 }
 
 const reducers = {
   login: fromLogin.reducer,
   router: fromRouter.routerReducer,
-  messages: fromMessages.reducer
+  messages: fromMessages.reducer,
+  sidebar: fromSidebar.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -29,6 +32,7 @@ export function reducer(state: any, action: any) {
  */
 export const getLoginState = (state: State) => state.login;
 export const getMessagesState = (state: State) => state.messages;
+export const getSidebarState = (state: State) => state.sidebar;
 
 /**
  * Selectors
@@ -44,3 +48,5 @@ export const getLoginUser = createSelector(getLoginState, fromLogin.loginCurrent
 
 export const getFlashMessage = createSelector(getMessagesState, fromMessages.getFlashMessage);
 export const getMessagesBarMessages = createSelector(getMessagesState, fromMessages.getBarMessage);
+
+export const getSidebarOpened = createSelector(getSidebarState, fromSidebar.sidebarOpened);
