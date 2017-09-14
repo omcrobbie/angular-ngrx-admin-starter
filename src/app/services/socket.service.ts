@@ -46,7 +46,7 @@ export class SocketService {
   listen(event: string): Observable<any> {
     return new Observable( observer => {
 
-      this.socket.on(event, data => {
+      this.socket.on(event, (data: any) => {
 
         // console.group();
         //   console.log('----- SOCKET INBOUND -----');
