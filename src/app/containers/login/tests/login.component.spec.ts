@@ -4,23 +4,21 @@ import { ComponentFixture, inject } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { LoginComponent } from '../login.component';
 import { MdInputDirective } from '@angular/material';
-import * as fromRoot from '../../../store';
+import * as fromLogin from '../state/login.reducer';
 
 describe('LoginComponent', () => {
     let comp: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
     let de: DebugElement;
     let el: HTMLElement;
+    let store: Store<fromLogin.State>;
     beforeEach(() => {
-        [fixture, comp, de, el] = setup();
+        [fixture, comp, de, el, store] = setup();
+        spyOn(store, 'dispatch').and.callThrough();
     });
-    // beforeEach(inject([Store], (store: MockStore<fromRoot.State>) => {
-    //     store.nextMock({
-    //         loggedIn: true
-    //     }, 'login');
-    // }));
     it('should exist', () => {
         fixture.detectChanges();
         expect(el).toBeTruthy();
+        expect(store).toBeTruthy();
     });
 });

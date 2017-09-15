@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Go } from './../../../utils/router-actions';
 import { ConfirmationService } from './../../services/confirmation.service';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -20,7 +20,6 @@ import * as fromRoot from '../../store';
   loggedIn$: Observable<any>;
   currentUser$: Observable<any>;
   constructor(private store: Store<fromRoot.State>,
-    private route: Router,
     private confirmation: ConfirmationService
   ) {
     this.currentUser$ = this.store.select(fromRoot.getLoginUser);
@@ -30,7 +29,7 @@ import * as fromRoot from '../../store';
   logout() {
     this.confirmation.create(() => {
       this.store.dispatch(new actions.Logout());
-      this.route.navigate(['/login']);
+      this.store.dispatch(new Go({ path: ['/login']}));
     });
   }
 
