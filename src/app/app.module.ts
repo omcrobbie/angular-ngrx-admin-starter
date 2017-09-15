@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
-import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
@@ -35,12 +35,12 @@ import { reducer } from './store';
     AppMaterialModule,
     ContainersModule,
     ComponentsModule,
-    EffectsModule.run(LoginEffects),
+    EffectsModule.forRoot([LoginEffects]),
     FormsModule,
     FlashMessagesModule,
-    StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    RouterStoreModule.connectRouter(),
+    StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
+    // StoreRouterConnectingModule,
     LocalStorageModule.withConfig({
       prefix: 'ngApp', // change this as needed
       storageType: 'localStorage'

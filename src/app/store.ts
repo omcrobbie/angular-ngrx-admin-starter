@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { compose } from '@ngrx/core/compose';
-import { ActionReducer, combineReducers } from '@ngrx/store';
+import { compose } from '@ngrx/store';
+import { ActionReducer, combineReducers, ActionReducerMap } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLogin from './containers/login/state/login.reducer';
 import * as fromMessages from './containers/messages/state/messages.reducer';
@@ -9,23 +9,24 @@ import * as fromSidebar from './components/sidenav-menu/state/sidebar.reducer';
 
 export interface State {
   login: fromLogin.State;
-  router: fromRouter.RouterState;
+  // router: fromRouter.RouterReducerState;
   messages: fromMessages.State;
   sidebar: fromSidebar.State;
 }
 
-const reducers = {
+// const reducers
+
+// const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
+
+// export function reducer(state: any, action: any) {
+//   return developmentReducer(state, action);
+// }
+export const reducer: ActionReducerMap<State> = {
   login: fromLogin.reducer,
-  router: fromRouter.routerReducer,
+  // router: fromRouter.routerReducer,
   messages: fromMessages.reducer,
   sidebar: fromSidebar.reducer
 };
-
-const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
-
-export function reducer(state: any, action: any) {
-  return developmentReducer(state, action);
-}
 /*
  * States
  *

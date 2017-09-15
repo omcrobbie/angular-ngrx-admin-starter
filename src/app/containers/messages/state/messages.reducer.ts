@@ -18,11 +18,11 @@ export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case messages.SET_BAR_MESSAGE:
       return Object.assign({}, state, {
-        snackBar: action.payload
+        snackBar: (action as messages.SetBarMessage).payload
       });
     case messages.SET_FLASH_MESSAGE:
       return Object.assign({}, state, {
-        flash: action.payload
+        flash: (action as messages.SetFlashMessage).payload
       });
     case messages.CLEAR_MESSAGES:
       return Object.assign({}, state, {

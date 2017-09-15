@@ -10,7 +10,6 @@ import * as actions from '../app/containers/login/state/login.actions';
 
 import { MdSnackBar } from '@angular/material';
 import { environment as env } from '../environments/environment';
-import { go } from '@ngrx/router-store';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import 'rxjs/add/operator/filter';
@@ -30,6 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public snackBar: MdSnackBar,
+    public route: Router,
     private flashMessages: FlashMessagesService,
     private store: Store<fromRoot.State>
   ) {
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
         this.store.dispatch(new ClearMessages());
     });
     this.authSub = this.authErr$.filter( m => !!m).subscribe(err => {
-        this.store.dispatch(go(['/login']));
+        this.route.navigate(['/login']);
     });
   }
 }

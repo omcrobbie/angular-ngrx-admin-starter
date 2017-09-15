@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import * as fromRoot from '../../store';
 import * as actions from './state/login.actions';
-import { go } from '@ngrx/router-store';
 
 @Component({
   selector: 'login',
@@ -21,6 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   constructor(
+    private route: Router,
     private store: Store<fromRoot.State>
   ) {
     this.loggedIn$ = this.store.select(fromRoot.getLoginLoggedIn);
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedIn$.subscribe(loggedIn => {
       if (loggedIn) {
-        this.store.dispatch(go(['/']));
+        this.route.navigate(['/']);
       }
     });
   }

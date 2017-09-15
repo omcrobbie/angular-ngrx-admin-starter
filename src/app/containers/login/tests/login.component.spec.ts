@@ -1,4 +1,3 @@
-import { MockStore } from './mock-store';
 import { Store } from '@ngrx/store';
 import { setup } from './setup';
 import { ComponentFixture, inject } from '@angular/core/testing';

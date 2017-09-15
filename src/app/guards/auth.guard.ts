@@ -4,7 +4,6 @@ import { StorageService } from './../services/storage.service';
 import { Injectable, OnInit } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import * as fromRoot from '../store';
-import { go } from '@ngrx/router-store';
 
 @Injectable()
 export class AuthorizedGuard implements CanActivate {
