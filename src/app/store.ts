@@ -1,3 +1,4 @@
+import { RouterStateUrl } from './../utils/router-serializer';
 import { createSelector } from 'reselect';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { compose } from '@ngrx/store';
@@ -9,7 +10,7 @@ import * as fromSidebar from './components/sidenav-menu/state/sidebar.reducer';
 
 export interface State {
   login: fromLogin.State;
-  // router: fromRouter.RouterReducerState;
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
   messages: fromMessages.State;
   sidebar: fromSidebar.State;
 }
@@ -23,7 +24,7 @@ export interface State {
 // }
 export const reducer: ActionReducerMap<State> = {
   login: fromLogin.reducer,
-  // router: fromRouter.routerReducer,
+  router: fromRouter.routerReducer,
   messages: fromMessages.reducer,
   sidebar: fromSidebar.reducer
 };
