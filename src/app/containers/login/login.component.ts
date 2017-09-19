@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Go } from './../../../utils/router-actions';
 import { SetFlashMessage } from './../messages/state/messages.actions';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   constructor(
+    private router: Router,
     private store: Store<fromRoot.State>
   ) {
     this.loggedIn$ = this.store.select(fromRoot.getLoginLoggedIn);
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.loggedIn$.subscribe(loggedIn => {
       if (loggedIn) {
-        this.store.dispatch(new Go({path: ['/']}));
+        // this.store.dispatch(new Go({path: ['/']}));
+        this.router.navigateByUrl('/');
       }
     });
   }
