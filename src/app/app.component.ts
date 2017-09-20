@@ -1,4 +1,4 @@
-import { Go } from './../utils/router-actions';
+import { Router } from '@angular/router';
 import { ClearMessages, SetFlashMessage } from './containers/messages/state/messages.actions';
 import { Auth } from './containers/login/state/login.actions';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public snackBar: MdSnackBar,
+    private router: Router,
     private flashMessages: FlashMessagesService,
     private store: Store<fromRoot.State>
   ) {
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit {
         this.store.dispatch(new ClearMessages());
     });
     this.authSub = this.authErr$.filter( m => !!m).subscribe(err => {
-        this.store.dispatch(new Go({ path: ['/login']}));
+        this.router.navigateByUrl('/login');
     });
   }
 }
