@@ -1,3 +1,4 @@
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { of } from 'rxjs/observable/of';
@@ -13,9 +14,17 @@ export class StorageService {
         return this.localStorage.get(this.tokenKey);
     }
     setTokenSync(token: string) {
-        return this.localStorage.set(this.tokenKey, token);
+        return this.tryCatch(this.localStorage.set, this.tokenKey, token);
     }
     clearToken() {
-        return of(this.localStorage.remove(this.tokenKey));
+        return this.tryCatch(this.localStorage.remove, this.tokenKey);
+    }
+    private tryCatch(fn: Function, ...args: any[]) {
+        try {
+            const result = fn.call(this, args);
+            return of(result);
+        } catch (err) {
+            return Observable.throw(err);
+        }
     }
 }
