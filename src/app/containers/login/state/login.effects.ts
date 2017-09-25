@@ -5,7 +5,6 @@ import { Action } from '@ngrx/store';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-
 import * as login from './login.actions';
 import { LoginService } from '../login.service';
 import { environment as env } from '../../../../environments/environment';
@@ -17,9 +16,11 @@ export class LoginEffects {
     .ofType(login.LOGIN)
     .switchMap((action: login.Login) => {
       return this.loginService.login(action.loginPayload)
-        .map(data => {
-          this.storageService.setTokenSync(data.token);
-          return new login.LoginSuccess(data.user);
+        .switchMap( data => {
+          return this.storageService.setTokenSync(data.token)
+          .map(() => {
+            return new login.LoginSuccess(data.user);
+          });
         })
         .catch(err => of(new login.LoginFailed(err)));
     });

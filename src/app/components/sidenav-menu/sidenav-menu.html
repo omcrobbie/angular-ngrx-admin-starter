@@ -3,7 +3,7 @@
     <md-nav-list>
       <a md-list-item *ngIf="(currentUser$ | async)">
         <md-icon md-list-icon>person</md-icon>
-        <h3 md-line>Hello, {{ (currentUser$ | async)?.userName }}</h3>
+        <h3 md-line class="current-user">Hello, {{ (currentUser$ | async)?.userName }}</h3>
       </a>
       <a md-list-item *ngIf="!(currentUser$ | async)">
         <h3 md-line>Please login</h3>

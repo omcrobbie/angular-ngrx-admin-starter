@@ -1,7 +1,7 @@
+import { Router } from '@angular/router';
 import { ClearMessages, SetFlashMessage } from './containers/messages/state/messages.actions';
 import { Auth } from './containers/login/state/login.actions';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,6 @@ import * as actions from '../app/containers/login/state/login.actions';
 
 import { MdSnackBar } from '@angular/material';
 import { environment as env } from '../environments/environment';
-import { go } from '@ngrx/router-store';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import 'rxjs/add/operator/filter';
@@ -30,6 +29,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public snackBar: MdSnackBar,
+    private router: Router,
     private flashMessages: FlashMessagesService,
     private store: Store<fromRoot.State>
   ) {
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
         this.store.dispatch(new ClearMessages());
     });
     this.authSub = this.authErr$.filter( m => !!m).subscribe(err => {
-        this.store.dispatch(go(['/login']));
+        this.router.navigateByUrl('/login');
     });
   }
 }

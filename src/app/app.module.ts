@@ -1,3 +1,4 @@
+import { CustomSerializer } from './../utils/router-serializer';
 import { ConfirmationService } from './services/confirmation.service';
 import { StorageService } from './services/storage.service';
 import { LoginService } from './containers/login/login.service';
@@ -9,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
-import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
@@ -35,12 +36,12 @@ import { reducer } from './store';
     AppMaterialModule,
     ContainersModule,
     ComponentsModule,
-    EffectsModule.run(LoginEffects),
+    EffectsModule.forRoot([LoginEffects]),
     FormsModule,
     FlashMessagesModule,
-    StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    RouterStoreModule.connectRouter(),
+    StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
+    StoreRouterConnectingModule,
     LocalStorageModule.withConfig({
       prefix: 'ngApp', // change this as needed
       storageType: 'localStorage'
@@ -59,8 +60,12 @@ import { reducer } from './store';
     {
       provide: Http,
       useFactory: httpFactory,
-      deps: [ XHRBackend, RequestOptions ]
+      deps: [ XHRBackend, RequestOptions ],
     },
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomSerializer
+    }
   ]
 })
 

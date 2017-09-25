@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ConfirmationService } from './../../services/confirmation.service';
 import { OnDestroy } from '@angular/core';
 import { OnInit } from '@angular/core';
@@ -6,7 +7,6 @@ import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { go } from '@ngrx/router-store';
 
 import * as actions from '../../containers/login/state/login.actions';
 import * as fromRoot from '../../store';
@@ -20,6 +20,7 @@ import * as fromRoot from '../../store';
   loggedIn$: Observable<any>;
   currentUser$: Observable<any>;
   constructor(private store: Store<fromRoot.State>,
+    private router: Router,
     private confirmation: ConfirmationService
   ) {
     this.currentUser$ = this.store.select(fromRoot.getLoginUser);
@@ -29,7 +30,7 @@ import * as fromRoot from '../../store';
   logout() {
     this.confirmation.create(() => {
       this.store.dispatch(new actions.Logout());
-      this.store.dispatch(go(['/login']));
+      this.router.navigateByUrl('/login');
     });
   }
 
