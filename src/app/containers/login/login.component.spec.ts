@@ -5,7 +5,7 @@ import { LoginEffects } from './state/login.effects';
 import { ComponentTestModule, ActionTestModule } from './../../../utils/test.module';
 import { RouterStub } from './../../../utils/router-stub';
 import { Router } from '@angular/router';
-import { getTestFixtures, createServiceStub, IMethodMap } from './../../../utils/test-helper';
+import { getTestFixtures, createServiceStub, IMethodMap, assertFn, makeAssert } from './../../../utils/test-helper';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { ComponentFixture, inject, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
@@ -73,6 +73,46 @@ describe('Login', () => {
             expect(store.dispatch).toHaveBeenCalledWith(new actions.Login(params));
         }));
     });
+    fdescribe('integration', () => {
+        let store: Store<fromRoot.State>;
+        let fixture: ComponentFixture<LoginComponent>;
+        let loginService: jasmine.SpyObj<LoginService>;
+        let storageService: jasmine.SpyObj<StorageService>;
+        let assert: assertFn;
+        // let action: Observable<any>;
+        beforeEach(() => {
+            TestBed.configureTestingModule({
+                imports: [
+                    ComponentTestModule,
+                    EffectsModule.forRoot([LoginEffects])
+                ],
+                declarations: [LoginComponent],
+                providers: [
+                    // provideMockActions(() => action ),
+                    {provide: LoginService, useValue: jasmine.createSpyObj('loginService', ['login'])},
+                    {provide: StorageService, useValue: jasmine.createSpyObj('storageService', ['setTokenSync'])}
+                ]
+            });
+            fixture = TestBed.createComponent(LoginComponent);
+            store = TestBed.get(Store);
+            spyOn(store, 'dispatch').and.callThrough();
+            assert = makeAssert(store, 'login');
+            loginService = TestBed.get(LoginService);
+            storageService = TestBed.get(StorageService);
+            loginService.login.and.returnValue(of({user: {userName: 'oliver'}, token: '12345'}));
+            storageService.setTokenSync.and.returnValue(of(true));
+        });
+        it('should complete login cycle', inject([Router, LoginEffects], (router: Router, effects: LoginEffects) => {
+            effects.login$.subscribe(result => {
+                expect(result).toEqual(expected);
+                expect(loginService.login).toHaveBeenCalled();
+                expect(storageService.setTokenSync).toHaveBeenCalledWith('12345');
+            });
+            const action = new actions.Login({userName: 'oliver', password: '123'});
+            const expected = new actions.LoginSuccess({userName: 'oliver'});
+            store.dispatch(action);
+        }));
+    });
     describe('Actions', () => {
         let store: Store<fromRoot.State>;
         function assert(action: any, state: any) {
@@ -94,6 +134,11 @@ describe('Login', () => {
             const fixture = {userName: 'oliver'};
             const state = { currentUser: fixture, loggedIn: true};
             const action = new actions.LoginSuccess(fixture);
+            assert(action, state);
+        });
+        it('Logout success', () => {
+            const action = new actions.LogoutSuccess();
+            const state: any = { currentUser: undefined, loggedIn: false};
             assert(action, state);
         });
         it('AuthSuccess', () => {

@@ -50,3 +50,15 @@ export interface IMethodMap {
     method: string;
     response: any;
 }
+export type assertFn = (action: Action, state: any, extra?: Function) => void;
+export function makeAssert(store: Store<any>, selector: string): assertFn {
+    return function (action: Action, state: any, extra?: Function) {
+        store.select(selector).last().subscribe( _state => {
+            if (extra) {
+                extra();
+            }
+            expect(state).toEqual(_state);
+        });
+        store.dispatch(action);
+    };
+}
