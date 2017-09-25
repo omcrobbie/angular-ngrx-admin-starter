@@ -12,7 +12,7 @@ export const getTestFixtures = <T>(Component: any, ...elems: any[]): [
     DebugElement[],
     Store<fromRoot.State>
 ] => {
-    const fixture: ComponentFixture<T> = TestBed.createComponent(Component);
+    const fixture: ComponentFixture<T> = TestBed.createComponent<T>(Component);
     const comp: T = fixture.componentInstance;
     const dElems: DebugElement[] = getDebugElements(fixture, ...elems);
     const els = dElems.map( de => de.nativeElement);

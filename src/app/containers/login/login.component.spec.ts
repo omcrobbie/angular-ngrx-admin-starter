@@ -40,7 +40,7 @@ describe('Login', () => {
                 ],
                 declarations: [LoginComponent],
             });
-            [fixture, comp, [button, userField, pwField], store] = getTestFixtures(LoginComponent, MdButton, 'input');
+            [fixture, comp, [button, userField, pwField], store] = getTestFixtures<LoginComponent>(LoginComponent, MdButton, 'input');
             spyOn(store, 'dispatch').and.callThrough();
             fixture.detectChanges();
         });
@@ -73,7 +73,7 @@ describe('Login', () => {
             expect(store.dispatch).toHaveBeenCalledWith(new actions.Login(params));
         }));
     });
-    fdescribe('integration', () => {
+    xdescribe('integration', () => {
         let store: Store<fromRoot.State>;
         let fixture: ComponentFixture<LoginComponent>;
         let loginService: jasmine.SpyObj<LoginService>;
