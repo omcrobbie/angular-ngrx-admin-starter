@@ -5,7 +5,7 @@ import { LoginEffects } from './state/login.effects';
 import { ComponentTestModule, ActionTestModule } from './../../../utils/test.module';
 import { RouterStub } from './../../../utils/router-stub';
 import { Router } from '@angular/router';
-import { getTestFixtures, createServiceStub, IMethodMap, assertFn, makeAssert } from './../../../utils/test-helper';
+import { getTestFixtures, createServiceStub, IMethodMap, assertFn, makeAssert } from './../../../test-helpers/test-helper';
 import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { ComponentFixture, inject, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';

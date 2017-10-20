@@ -9,7 +9,7 @@ import { DebugElement, Component } from '@angular/core';
 import { ActionTestModule, ComponentTestModule } from './../../../utils/test.module';
 import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import * as fromRoot from '../../store';
-import { makeAssert, assertFn, getTestFixtures } from '../../../utils/test-helper';
+import { makeAssert, assertFn, getTestFixtures } from '../../../test-helpers/test-helper';
 describe('Sidebar menu', () => {
     describe('actions', () => {
         let store: Store<fromRoot.State>;
