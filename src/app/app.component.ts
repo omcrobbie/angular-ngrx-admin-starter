@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import * as fromRoot from './store';
 import * as actions from '../app/containers/login/state/login.actions';
 
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { environment as env } from '../environments/environment';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   barSub: Subscription;
 
   constructor(
-    public snackBar: MdSnackBar,
+    public snackBar: MatSnackBar,
     private router: Router,
     private flashMessages: FlashMessagesService,
     private store: Store<fromRoot.State>

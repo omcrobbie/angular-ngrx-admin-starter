@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../../store';
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private store: Store<fromRoot.State>,
-    public dialog: MdDialog) {
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {

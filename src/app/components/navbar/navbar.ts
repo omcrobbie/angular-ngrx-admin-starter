@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Component, OnInit, Input } from '@angular/core';
-import { MdSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import * as fromRoot from '../../store';
 
@@ -16,7 +16,7 @@ import * as fromRoot from '../../store';
 })
 @AutoUnsubscribe()
 export class NavbarComponent implements OnInit {
-  @Input() menu: MdSidenav;
+  @Input() menu: MatSidenav;
   sidebar$: Observable<any>;
   sidebarSub: Subscription;
   sideBarOpen = false;

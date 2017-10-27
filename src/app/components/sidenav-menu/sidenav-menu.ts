@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 
 import * as actions from '../../containers/login/state/login.actions';
