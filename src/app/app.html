@@ -1,7 +1,7 @@
-<md-sidenav-container>
-  <md-sidenav mode="side" opened="false" align="end" #sidenav>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="false" align="end" #sidenav>
     <sidenav-menu></sidenav-menu>
-  </md-sidenav>
+  </mat-sidenav>
 
   <div class="content-container">
     <navbar [menu]="sidenav"></navbar>
@@ -11,4 +11,4 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-</md-sidenav-container>
+</mat-sidenav-container>

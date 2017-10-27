@@ -1,32 +1,32 @@
 <div class="login page">
-  <md-card class="max-width-3 mx-auto">
+  <mat-card class="max-width-3 mx-auto">
     <div class="page-heading flex items-center justify-center mb3">
       <h1 class="mt2 mb1 center">Login</h1>
     </div>
 
     <div class="flex m4 mb4 justify-center" *ngIf="loading$ | async">
-      <md-progress-spinner
+      <mat-progress-spinner
         color="primary"
         mode="indeterminate"
-        class="ml2 spinner-size-small"></md-progress-spinner>
+        class="ml2 spinner-size-small"></mat-progress-spinner>
     </div>
 
     <div class="login-form flex flex-wrap max-width-2 justify-center mx-auto">
       <div class="sm-col-12 mb3">
-        <md-input-container class="block" floatPlaceholder="always">
-          <input mdInput class="block" id="userName" type="text" name="userName" placeholder="Username" [(ngModel)]="userName" />
-        </md-input-container>
+        <mat-input-container class="block" floatPlaceholder="always">
+          <input matInput class="block" id="userName" type="text" name="userName" placeholder="Username" [(ngModel)]="userName" />
+        </mat-input-container>
       </div>
 
       <div class="sm-col-12 mb3">
-        <md-input-container class="block" floatPlaceholder="always">
-          <input mdInput class="block" id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" />
-        </md-input-container>
+        <mat-input-container class="block" floatPlaceholder="always">
+          <input matInput class="block" id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" />
+        </mat-input-container>
       </div>
 
       <div class="sm-col-12 justify-center flex">
-        <button md-raised-button color="primary" (click)="login()">Submit</button>
+        <button mat-raised-button color="primary" (click)="login()">Submit</button>
       </div>
     </div>
-  </md-card>
+  </mat-card>
 </div>

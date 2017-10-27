@@ -1,22 +1,22 @@
 <div class="sidenav-menu">
-  <md-toolbar color="accent">
-    <md-nav-list>
-      <a md-list-item *ngIf="(currentUser$ | async)">
-        <md-icon md-list-icon>person</md-icon>
-        <h3 md-line class="current-user">Hello, {{ (currentUser$ | async)?.userName }}</h3>
+  <mat-toolbar color="accent">
+    <mat-nav-list>
+      <a mat-list-item *ngIf="(currentUser$ | async)">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <h3 mat-line class="current-user">Hello, {{ (currentUser$ | async)?.userName }}</h3>
       </a>
-      <a md-list-item *ngIf="!(currentUser$ | async)">
-        <h3 md-line>Please login</h3>
+      <a mat-list-item *ngIf="!(currentUser$ | async)">
+        <h3 mat-line>Please login</h3>
       </a>
-    </md-nav-list>
-  </md-toolbar>
+    </mat-nav-list>
+  </mat-toolbar>
 
-  <md-nav-list>
+  <mat-nav-list>
 
-    <md-divider></md-divider>
-    <a md-list-item *ngIf="loggedIn$ | async" (click)="logout()">
-      <md-icon md-list-icon>exit_to_app</md-icon>
-      <h3 md-line>Logout</h3>
+    <mat-divider></mat-divider>
+    <a mat-list-item *ngIf="loggedIn$ | async" (click)="logout()">
+      <mat-icon mat-list-icon>exit_to_app</mat-icon>
+      <h3 mat-line>Logout</h3>
     </a>
-  </md-nav-list>
+  </mat-nav-list>
 </div>
