@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { createSelector } from 'reselect';
-import * as sidebar from './app.actions';
+import * as sidebar from './sidebar.actions';
 import * as login from '../containers/login/state/login.actions';
 
 export interface State {

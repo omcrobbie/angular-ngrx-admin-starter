@@ -1,6 +1,6 @@
-import { SidebarToggle } from './state/app.actions';
+import { SidebarToggle } from './state/sidebar.actions';
 import { Router } from '@angular/router';
-import { ClearMessages, SetFlashMessage } from './containers/messages/state/messages.actions';
+import { ClearMessages, SetFlashMessage } from './state/messages.actions';
 import { Auth } from './containers/login/state/login.actions';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';

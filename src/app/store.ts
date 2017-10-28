@@ -5,14 +5,14 @@ import { compose } from '@ngrx/store';
 import { ActionReducer, combineReducers, ActionReducerMap } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLogin from './containers/login/state/login.reducer';
-import * as fromMessages from './containers/messages/state/messages.reducer';
-import * as fromApp from './state/app.reducer';
+import * as fromMessages from './state/messages.reducer';
+import * as fromSidebar from './state/sidebar.reducer';
 
 export interface State {
   login: fromLogin.State;
   router: fromRouter.RouterReducerState<RouterStateUrl>;
   messages: fromMessages.State;
-  sidebar: fromApp.State;
+  sidebar: fromSidebar.State;
 }
 
 // const reducers
@@ -26,7 +26,7 @@ export const reducer: ActionReducerMap<State> = {
   login: fromLogin.reducer,
   router: fromRouter.routerReducer,
   messages: fromMessages.reducer,
-  sidebar: fromApp.reducer
+  sidebar: fromSidebar.reducer
 };
 /*
  * States
@@ -51,4 +51,4 @@ export const getLoginUser = createSelector(getLoginState, fromLogin.loginCurrent
 export const getFlashMessage = createSelector(getMessagesState, fromMessages.getFlashMessage);
 export const getMessagesBarMessages = createSelector(getMessagesState, fromMessages.getBarMessage);
 
-export const getSidebarOpened = createSelector(getSidebarState, fromApp.sidebarOpened);
+export const getSidebarOpened = createSelector(getSidebarState, fromSidebar.sidebarOpened);

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { SetFlashMessage } from './../messages/state/messages.actions';
+import { SetFlashMessage } from '../../state/messages.actions';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
