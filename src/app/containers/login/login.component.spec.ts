@@ -10,7 +10,7 @@ import { Store, StoreModule, combineReducers } from '@ngrx/store';
 import { ComponentFixture, inject, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { LoginComponent } from './login.component';
-import { MdInputDirective, MdButton } from '@angular/material';
+import { MatInput, MatButton } from '@angular/material';
 import * as fromRoot from '../../store';
 import * as fromLogin from './state/login.reducer';
 import * as actions from './state/login.actions';
@@ -40,7 +40,7 @@ describe('Login', () => {
                 ],
                 declarations: [LoginComponent],
             });
-            [fixture, comp, [button, userField, pwField], store] = getTestFixtures<LoginComponent>(LoginComponent, MdButton, 'input');
+            [fixture, comp, [button, userField, pwField], store] = getTestFixtures<LoginComponent>(LoginComponent, MatButton, 'input');
             spyOn(store, 'dispatch').and.callThrough();
             fixture.detectChanges();
         });

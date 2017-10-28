@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import * as messages from './messages.actions';
-import * as login from '../../login/state/login.actions';
+import * as login from '../containers/login/state/login.actions';
 
 
 export interface State {

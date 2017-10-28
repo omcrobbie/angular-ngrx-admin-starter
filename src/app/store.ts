@@ -5,8 +5,8 @@ import { compose } from '@ngrx/store';
 import { ActionReducer, combineReducers, ActionReducerMap } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLogin from './containers/login/state/login.reducer';
-import * as fromMessages from './containers/messages/state/messages.reducer';
-import * as fromSidebar from './components/sidenav-menu/state/sidebar.reducer';
+import * as fromMessages from './state/messages.reducer';
+import * as fromSidebar from './state/sidebar.reducer';
 
 export interface State {
   login: fromLogin.State;

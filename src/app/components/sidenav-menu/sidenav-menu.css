@@ -1,8 +1,8 @@
-.sidenav-menu md-toolbar {
+.sidenav-menu mat-toolbar {
   padding: 0;
 }
 
-.sidenav-menu md-nav-list {
+.sidenav-menu mat-nav-list {
   padding: 0;
   width: 100%;
 }

@@ -1,12 +1,12 @@
 import { ConfirmationDialogComponent } from './../components/confirmation-dialog/confirmation-dialog.component';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/first';
 
 @Injectable()
 export class ConfirmationService {
-    confirmationDialog: MdDialogRef<ConfirmationDialogComponent>;
-    constructor(private dialog: MdDialog) { }
+    confirmationDialog: MatDialogRef<ConfirmationDialogComponent>;
+    constructor(private dialog: MatDialog) { }
 
     create(
         callback: Function,

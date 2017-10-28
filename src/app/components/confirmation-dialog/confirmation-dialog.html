@@ -1,11 +1,11 @@
-<md-dialog-content class="delete-confirmation-dialog block">
+<mat-dialog-content class="delete-confirmation-dialog block">
     <div class="mb3">
         <h3 class="h3 mt0 mb2">{{ header }}</h3>
         <p>{{ question }}</p>
     </div>
 
     <div class="center p1 mt2">
-        <button md-raised-button md-dialog-close>{{ cancelLabel }}</button>
-        <button md-raised-button color="primary" [md-dialog-close]="true">{{ confirmLabel }}</button>
+        <button mat-raised-button mat-dialog-close>{{ cancelLabel }}</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true">{{ confirmLabel }}</button>
     </div>
-</md-dialog-content>
+</mat-dialog-content>

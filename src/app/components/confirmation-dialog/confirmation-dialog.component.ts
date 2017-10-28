@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MD_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'confirmation',
@@ -12,7 +12,7 @@ export class ConfirmationDialogComponent implements OnInit {
     question: string;
     confirmLabel: string;
     cancelLabel: string;
-    constructor(@Inject(MD_DIALOG_DATA) private data: any) {
+    constructor(@Inject(MAT_DIALOG_DATA) private data: any) {
         this.header = data.header;
         this.question = data.question;
         this.confirmLabel = data.confirmLabel;
