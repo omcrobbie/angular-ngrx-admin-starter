@@ -1,10 +1,10 @@
-<mat-sidenav-container>
-  <mat-sidenav mode="side" opened="false" align="end" #sidenav>
+<mat-sidenav-container (backdropClick)="closeSidebar()">
+  <mat-sidenav mode="over" opened="false" align="end" #sidenav>
     <sidenav-menu></sidenav-menu>
   </mat-sidenav>
 
   <div class="content-container">
-    <navbar [menu]="sidenav"></navbar>
+    <navbar (onClick)="openSidebar()"></navbar>
 
     <div class="page-container p3">
       <flash-messages></flash-messages>

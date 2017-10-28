@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { createSelector } from 'reselect';
-import * as sidebar from './sidebar.actions';
-import * as login from '../../../containers/login/state/login.actions';
+import * as sidebar from './app.actions';
+import * as login from '../containers/login/state/login.actions';
 
 export interface State {
     opened: boolean;
@@ -15,10 +15,10 @@ export function reducer(state = initialState, action: Action): State {
             return Object.assign({}, state, {
                 opened: (action as sidebar.SidebarToggle).opened
             });
-        case login.LOGIN_SUCCESS:
-            return Object.assign({}, state, {
-                opened: true
-            });
+        // case login.LOGIN_SUCCESS:
+        //     return Object.assign({}, state, {
+        //         opened: true
+        //     });
         case login.LOGOUT_SUCCESS:
             return Object.assign({}, state, {
                 opened: false
